@@ -5,12 +5,12 @@ import haxegd.TweenStyle;
 
 class Tweening
 {
-    public static function makeTween(target:Node):Tween
+    public static function makeTween(target:Node):Tween // translation
     {
-        return target.create_tween();
+        return target.create_tween(); 
     }
 
-    public static function doTween(target:Node, tween:Tween, property:String, value:Dynamic, style:TweenStyle = null, duration:Float = 1.0):Void
+    public static function doTween(target:Node, tween:Tween, property:String, value:Dynamic, style:TweenStyle = null, duration:Float = 1.0):Void // Inspired by Flixel!
     {
         var changeProperty:NodePath = new NodePath(property);
         if (style == null) { style = TweenStyle.Linear; }
