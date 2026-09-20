@@ -9,4 +9,9 @@ class Audio
         stream.stream = audio;
         stream.play();
     }
+
+    public static function setPolyphony(stream:AudioStreamPlayer, maxConcurrent = 1)
+    {
+        stream.max_polyphony = maxConcurrent;
+    }
 }
