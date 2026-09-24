@@ -22,6 +22,11 @@ class Controls
         return Input.is_action_just_pressed(action);
     }
 
+    public static function physicalKeyPressed(keycode:godot.Key):Bool
+    {
+        return Input.is_physical_key_pressed(keycode);
+    }
+
     public static function getMouseMovement(event:InputEvent):{pitch:Float, yaw:Float}
     {
         var yaw:Float = 0;
