@@ -14,7 +14,7 @@ class Char3DHelpers
         return target.is_on_floor();
     }
 
-    public static function getRaycastCollider(raycast:RayCast3D):{className:String, node:Node} // gets the name of the Class and the Node Type of a Node currently colliding with a provided Raycast
+    public static function getRaycastCollider(raycast:RayCast3D, ?getClass:Bool = true):{className:String, node:Node} // gets the name of the Class and the Node Type of a Node currently colliding with a provided Raycast
     {
         var object = raycast.get_collider();
         var className:String = "null";
@@ -24,13 +24,14 @@ class Char3DHelpers
         null checks here prevent crashing when getting a name of a script that doesn't exist on a target 
         in situations where there is no script or is no node
         DOES NOT PREVENT OBJECTS WITHOUT SCRIPTS FROM RETURNING A VALUE
-        WILL RETURN NULL 
+        WILL RETURN NULL IF getClass IS TRUE WHICH IS DEFAULT
         */
-        if (object != null && object.get_script() != null && Std.isOfType(object, Node)) { 
-            className = object.get_script().get_global_name();
+        if (object != null) {
+            if (object.get_script() != null && Std.isOfType(object, Node) && getClass) { 
+                className = object.get_script().get_global_name();
+            }
             node = cast object; 
         }
-        
         return { className: className, node: node };
     }
 }

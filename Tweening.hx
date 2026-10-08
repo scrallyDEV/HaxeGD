@@ -10,6 +10,11 @@ class Tweening
         return target.create_tween(); 
     }
 
+    public static function isTweening(tween:Tween):Bool // translation
+    {
+        return tween.is_running();
+    }
+
     public static function doTween(target:Node, tween:Tween, property:String, value:Dynamic, style:TweenStyle = null, duration:Float = 1.0):Void // Inspired by Flixel!
     {
         var changeProperty:NodePath = new NodePath(property);
