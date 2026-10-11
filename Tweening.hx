@@ -5,7 +5,7 @@ import haxegd.TweenStyle;
 
 class Tweening
 {
-    public static function makeTween(target:Node):Tween // translation
+    public static function makeTween(target:Dynamic):Tween // translation
     {
         return target.create_tween(); 
     }
@@ -15,7 +15,7 @@ class Tweening
         return tween.is_running();
     }
 
-    public static function doTween(target:Node, tween:Tween, property:String, value:Dynamic, style:TweenStyle = null, duration:Float = 1.0):Void // Inspired by Flixel!
+    public static function doTween(target:Dynamic, tween:Tween, property:String, value:Dynamic, style:TweenStyle = null, duration:Float = 1.0):Void // Inspired by Flixel!
     {
         var changeProperty:NodePath = new NodePath(property);
         if (style == null) { style = TweenStyle.Linear; }
