@@ -27,6 +27,32 @@ class Controls
         return Input.is_physical_key_pressed(keycode);
     }
 
+    public static function isMouseInput(event:InputEvent, input:String):Bool
+    {
+        input = input.toLowerCase();
+
+        if (Std.isOfType(event, InputEventMouseButton)) {
+            var mouseEvent:InputEventMouseButton = cast event;
+
+            if (!mouseEvent.pressed) {
+                return false;
+            }
+
+            return switch(input)
+            {
+                case "left": mouseEvent.button_index == (cast MouseButton.MOUSE_BUTTON_LEFT : Int);
+                case "right": mouseEvent.button_index == (cast MouseButton.MOUSE_BUTTON_RIGHT : Int);
+                case "middle": mouseEvent.button_index == (cast MouseButton.MOUSE_BUTTON_MIDDLE : Int);
+                default:
+                    trace("HAXEGD: " + input + "" + "is not a valid mouse button");
+                    return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+
     public static function getMouseMovement(event:InputEvent):{pitch:Float, yaw:Float}
     {
         var yaw:Float = 0;
