@@ -5,7 +5,7 @@ import godot.*;
 class Controls
 {
     public static function inputPressed(action:String, isSecondary:Bool = false):Bool
-    { // Mapping the InputPressed function to Godot's Input.is_action_pressed method
+    {
         if (isSecondary)
         {
             action += "-secondary";
@@ -14,7 +14,7 @@ class Controls
     }
 
     public static function inputJustPressed(action:String, isSecondary:Bool = false):Bool
-    { // Mapping the InputPressed function to Godot's Input.is_action_just_pressed method
+    { 
         if (isSecondary)
         {
             action += "-secondary";
