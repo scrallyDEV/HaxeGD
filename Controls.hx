@@ -27,6 +27,16 @@ class Controls
         return Input.is_physical_key_pressed(keycode);
     }
 
+    public static function physicalKeyJustPressed(event:InputEvent, keycode:godot.Key):Bool
+    {
+        if (!Std.isOfType(event, InputEventKey)) {
+            return false;
+        }
+
+        var keyEvent:InputEventKey = cast event;
+        return keyEvent.pressed && !keyEvent.echo && keyEvent.physical_keycode == (cast keycode : Int);
+    }
+
     public static function isMouseInput(event:InputEvent, input:String):Bool
     {
         input = input.toLowerCase();
