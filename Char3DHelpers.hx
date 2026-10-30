@@ -34,5 +34,38 @@ class Char3DHelpers
         }
         return { className: className, node: node };
     }
+}
 
+class RigHelpers
+{
+    public static function playAnim(controller:AnimationPlayer, loop:Bool, ?onFinished:Callable):Void
+    {
+        var animation = controller.get_animation(controller.assigned_animation);
+
+        if (animation == null) {
+            trace("HAXEGD: AnimationPlayer has no assigned animation");
+            return;
+        }
+
+        animation.loop_mode = cast (
+            loop
+                ? Animation_LoopMode.LOOP_LINEAR
+                : Animation_LoopMode.LOOP_NONE
+        );
+
+        if (!loop && onFinished != null && !onFinished.is_null()) {
+            controller.connect(
+                "animation_finished",
+                onFinished.unbind(1),
+                cast Object_ConnectFlags.CONNECT_ONE_SHOT
+            );
+        }
+
+        controller.play();
+    }
+
+    public static function stopAnim(controller:AnimationPlayer):Void
+    {
+        controller.stop();
+    }
 }
